@@ -1301,7 +1301,7 @@ class HexLattice(Lattice):
         else:
             z = point[2] - self.center[2]
             iz = floor(z/self.pitch[1] + 0.5*self.num_axial)
-        if self._orientation == 'x':
+        if self._orientation == 'y':
             alpha = y - x*sqrt(3.)
             i1 = floor(-alpha/(sqrt(3.0) * self.pitch[0]))
             i2 = floor(y/(sqrt(0.75) * self.pitch[0]))
@@ -1343,7 +1343,7 @@ class HexLattice(Lattice):
             system
 
         """
-        if self._orientation == 'x':
+        if self._orientation == 'y':
             x = point[0] - (self.center[0] + (idx[0] + 0.5*idx[1])*self.pitch[0])
             y = point[1] - (self.center[1] + sqrt(0.75)*self.pitch[0]*idx[1])
         else:
@@ -1395,7 +1395,7 @@ class HexLattice(Lattice):
             else:
                 i_within = 5*g - z
 
-        if self._orientation == 'x' and g > 0:
+        if self._orientation == 'y' and g > 0:
             i_within = (i_within + 5*g) % (6*g)
 
         if self.num_axial is None:
@@ -1615,10 +1615,10 @@ class HexLattice(Lattice):
         each sub-list represents a single ring.  The first list should be the
         outer ring.
         """
-        if self._orientation == 'x':
-            return self._repr_axial_slice_x(universes)
-        else:
+        if self._orientation == 'y':
             return self._repr_axial_slice_y(universes)
+        else:
+            return self._repr_axial_slice_x(universes)
 
     def _repr_axial_slice_x(self, universes):
         """Return string representation for the given 2D group of universes
@@ -2051,10 +2051,10 @@ class HexLattice(Lattice):
 
         """
 
-        if orientation == 'x':
-            return HexLattice._show_indices_x(num_rings)
-        else:
+        if orientation == 'y':
             return HexLattice._show_indices_y(num_rings)
+        else:
+            return HexLattice._show_indices_x(num_rings)
 
     @classmethod
     def from_hdf5(cls, group, universes):
