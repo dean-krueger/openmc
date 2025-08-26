@@ -2050,7 +2050,7 @@ class HexLattice(Lattice):
             Diagram of the hexagonal lattice showing indices
 
         """
-
+        # Test
         if orientation == 'y':
             return HexLattice._show_indices_y(num_rings)
         else:
